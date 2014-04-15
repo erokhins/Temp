@@ -1,1 +1,2 @@
-rm a.out && gcc 1.c && ./a.out
+rm a.out
+gcc -fopenmp 1.c && ./a.out
