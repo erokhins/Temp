@@ -1,5 +1,9 @@
+#include <omp.h>
+
 int main() {
-	run3();
+	int i;
+	for (i = 0; i < 100; i++)
+		run1();
 }
 
 void run1() {
@@ -7,9 +11,11 @@ void run1() {
 	
 	#pragma omp parallel
 	{
-		#pragma omp for private(i) lastprivate(k)
-		for(i=0; i<10; i++)
-		k = i*i;
+		k=0;
+		#pragma omp for private(i) firstprivate(k) lastprivate(k) 
+			for(i=0; i<1; i++)
+				k = k + i;
+		
 	}
 	printf("k = %d\n", k);
 }
@@ -29,7 +35,7 @@ void run2() {
 void run3() {
 	int myid, a;
 	a = 10;
-	#pragma omp parallel firstprivate(a)
+	#pragma omp parallel default(shared) firstprivate(a)
 	{
 		myid = omp_get_thread_num();
 		printf("Thread%d: a = %d\n", myid, a);

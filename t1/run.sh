@@ -1,2 +1,2 @@
-rm a.out
-gcc -fopenmp 1.c && ./a.out
+rm -f a.out
+gcc -w -fopenmp 2.c && echo "Compiled, run:" && ./a.out
