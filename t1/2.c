@@ -22,12 +22,8 @@ float norm1(int size, float m[size][size]);
 float normB(int size, float m[size][size]);
 	
 int main() {
-	int i;
-	for (i = 0; i < 2000; i++) {
-		run(3, m3);
-		run(5, matrix);
-		printf("\n");
-	}
+	run(3, m3);
+	run(5, matrix);
 }
 
 void run(int size, float m[size][size]) {
